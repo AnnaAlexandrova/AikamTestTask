@@ -1,0 +1,21 @@
+{
+  "criteria": [
+    {
+      "lastName": "Ivanov"
+    },
+    {
+      "productName": "Chocolate",
+      "minTimes": 2
+    },
+    {
+      "minExpenses": 0,
+      "maxExpenses": 1000
+    },
+    {
+      "badCustomers": 3
+    },
+    {
+      "lastName": "Petrov"
+    }
+  ]
+}
