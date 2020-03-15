@@ -42,10 +42,8 @@ public class DaoStat {
     }
 
     public JSONArray getCustomersInfo(JSONObject inputObj) {
-        try {
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
             Class.forName(className);
-
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");
@@ -101,10 +99,8 @@ public class DaoStat {
     }
 
     private JSONArray getPurchasesInfo(int customerId, JSONObject inputObj) {
-        try {
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
             Class.forName(className);
-
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");

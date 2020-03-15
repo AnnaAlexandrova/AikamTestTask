@@ -6,8 +6,7 @@ import java.io.FileNotFoundException;
 
 public class ReadingJsonController {
     public static String readJsonFile(String path) {
-        try {
-            Scanner scanner = new Scanner(new FileInputStream(path));
+        try(Scanner scanner = new Scanner(new FileInputStream(path))) {
             StringBuilder json = new StringBuilder();
 
             while (scanner.hasNext()) {

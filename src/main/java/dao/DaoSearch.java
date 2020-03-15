@@ -28,10 +28,9 @@ public class DaoSearch {
     }
 
     public JSONArray findCustomersWithLastName(JSONObject inputObj) {
-        try {
-            Class.forName(className);
 
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
+            Class.forName(className);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");
@@ -54,10 +53,8 @@ public class DaoSearch {
     }
 
     public JSONArray findCustomersProductNameByMinTimes(JSONObject inputObj) {
-        try {
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
             Class.forName(className);
-
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");
@@ -86,10 +83,8 @@ public class DaoSearch {
     }
 
     public JSONArray findMinMaxCostInterval(JSONObject inputObj) {
-        try {
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
             Class.forName(className);
-
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");
@@ -117,9 +112,8 @@ public class DaoSearch {
     }
 
     public JSONArray findBadCustomers(JSONObject inputObj) {
-        try {
+        try (Connection connection = DriverManager.getConnection(dbUrl, login, password)) {
             Class.forName(className);
-            Connection connection = DriverManager.getConnection(dbUrl, login, password);
 
             if (connection == null) {
                 System.out.println("Нет соединения с базой данных!");
@@ -146,11 +140,9 @@ public class DaoSearch {
     }
 
     private JSONArray getObjects(PreparedStatement statement) {
-        try {
-            ResultSet resultSet = statement.executeQuery();
+        try (ResultSet resultSet = statement.executeQuery()) {
 
             JSONArray result = new JSONArray();
-
             while (resultSet.next()) {
                 JSONObject resultObj = new JSONObject();
 
