@@ -85,7 +85,12 @@ public class DaoStat {
 
                     result.put(resultObj);
                 }
-                avgExpenses = totalExpenses / customersCount;
+
+                if (customersCount == 0) {
+                    avgExpenses = 0;
+                } else {
+                    avgExpenses = totalExpenses / customersCount;
+                }
 
                 return result;
             }

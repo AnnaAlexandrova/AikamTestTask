@@ -13,6 +13,9 @@ public class Stat {
         result.put("type", "stat");
 
         long totalDaysCount = getTotalDays(inputObj);
+        if (totalDaysCount < 0) {
+            return null;
+        }
         result.put("totalDays", totalDaysCount);
 
 
@@ -28,10 +31,15 @@ public class Stat {
     }
 
     private long getTotalDays(JSONObject inputObj) {
-        Date date1 = Date.valueOf(inputObj.get("startDate").toString());
-        Date date2 = Date.valueOf(inputObj.get("endDate").toString());
+        try {
+            Date date1 = Date.valueOf(inputObj.get("startDate").toString());
+            Date date2 = Date.valueOf(inputObj.get("endDate").toString());
 
-        long dateResult = date2.getTime() - date1.getTime();
-        return dateResult / 1000 / 3600 / 24;
+            long dateResult = date2.getTime() - date1.getTime();
+            return dateResult / 1000 / 3600 / 24;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
     }
 }

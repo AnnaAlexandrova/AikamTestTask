@@ -16,7 +16,12 @@ public class Search {
         JSONObject result = new JSONObject();
 
         result.put("type", "search");
-        result.put("results", createResultArray(inputArray));
+
+        JSONArray resultArray = createResultArray(inputArray);
+        if (resultArray == null) {
+            return null;
+        }
+        result.put("results", resultArray);
 
         return result;
     }
